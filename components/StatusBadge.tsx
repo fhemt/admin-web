@@ -1,5 +1,5 @@
 import { ApiContentStatus } from "@/lib/api/types";
-import { STATUS_LABEL, STATUS_TOKENS } from "./status";
+import { STATUS_LABEL, STATUS_TOKENS } from "@/lib/labels";
 
 export function StatusBadge({ status }: { status: ApiContentStatus }) {
   const tint = STATUS_TOKENS[status];

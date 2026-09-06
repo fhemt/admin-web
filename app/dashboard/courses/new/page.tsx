@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { CourseForm } from "../CourseForm";
+import { CreateCourseWizard } from "./CreateCourseWizard";
 import { createCourseAction } from "../actions";
 
 export const metadata: Metadata = { title: "Nouveau cours" };
@@ -11,7 +11,7 @@ export default function NewCoursePage() {
       <p className="mb-6 text-sm text-foreground-secondary">
         Le cours démarre en brouillon — il ne sera visible des élèves qu’une fois publié.
       </p>
-      <CourseForm action={createCourseAction} submitLabel="Créer le cours" />
+      <CreateCourseWizard action={createCourseAction} />
     </div>
   );
 }

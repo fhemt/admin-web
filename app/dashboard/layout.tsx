@@ -1,8 +1,11 @@
 import Link from "next/link";
-import { BookOpen, LogOut } from "lucide-react";
+import { BookOpen, ClipboardList, LogOut } from "lucide-react";
 import { logoutAction } from "../(auth)/actions";
 
-const NAV = [{ href: "/dashboard/courses", label: "Cours", icon: BookOpen }];
+const NAV = [
+  { href: "/dashboard/courses", label: "Cours", icon: BookOpen },
+  { href: "/dashboard/mock-exams", label: "Examens blancs", icon: ClipboardList },
+];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
