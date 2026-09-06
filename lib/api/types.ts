@@ -8,12 +8,35 @@ export type ApiCollegeYear = "AC_1" | "AC_2" | "AC_3";
 export type ApiSubject = "MATH" | "PHYSIQUE" | "SVT";
 export type ApiCourseIcon = "CALCULATOR" | "SIGMA" | "RULER" | "SHAPES" | "FLASK" | "BOOK";
 export type ApiContentStatus = "DRAFT" | "PENDING_REVIEW" | "CHANGES_REQUESTED" | "PUBLISHED";
+export type ApiRole = "STUDENT" | "TEACHER" | "ADMIN";
 
 export interface ApiAdminUser {
   userId: string;
   email: string;
   firstName: string;
   lastName: string;
+  role: ApiRole;
+}
+
+export interface ApiTeamMember {
+  userId: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  role: ApiRole;
+}
+
+export interface ApiTeamInvite {
+  token: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  role: ApiRole;
+}
+
+export interface ApiMaintenanceStatus {
+  active: boolean;
+  message: string | null;
 }
 
 export interface ApiLoginResponse {
