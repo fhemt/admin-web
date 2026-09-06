@@ -69,7 +69,14 @@ async function rawRequest<T>(path: string, options: RequestOptions, isRetry = fa
         const refreshed = await refreshSession();
         if (refreshed) return rawRequest<T>(path, options, true);
       }
-      await clearSessionCookies();
+      try {
+        await clearSessionCookies();
+      } catch {
+        // Called from a plain Server Component render (a page's data fetch,
+        // not a Server Action) — cookies can't be mutated there. The stale
+        // cookie is harmless; it gets overwritten on the next successful
+        // login, and proxy.ts treats an expired token as no session anyway.
+      }
       throw new SessionExpiredError();
     }
     throw new ApiError(code, res.status, envelope.error.message.fr);

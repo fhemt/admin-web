@@ -3,6 +3,7 @@
 import { useActionState } from "react";
 import { Loader2 } from "lucide-react";
 import { ApiCourse } from "@/lib/api/types";
+import { Field, inputClass } from "@/components/form/Field";
 import { ActionState } from "./actions";
 
 type Props = {
@@ -10,18 +11,6 @@ type Props = {
   action: (prevState: ActionState, formData: FormData) => Promise<ActionState>;
   submitLabel: string;
 };
-
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div className="flex flex-col gap-1.5">
-      <label className="text-sm font-medium text-foreground-secondary">{label}</label>
-      {children}
-    </div>
-  );
-}
-
-const inputClass =
-  "w-full rounded-xl border border-border bg-surface px-3.5 py-2.5 text-[14px] outline-none transition focus:border-primary focus:ring-2 focus:ring-primary-light";
 
 export function CourseForm({ course, action, submitLabel }: Props) {
   const [state, formAction, pending] = useActionState(action, undefined);

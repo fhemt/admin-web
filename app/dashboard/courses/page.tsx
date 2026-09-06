@@ -4,8 +4,8 @@ import { redirect } from "next/navigation";
 import { Plus } from "lucide-react";
 import { listCourses } from "@/lib/api/courses";
 import { SessionExpiredError } from "@/lib/api/errors";
-import { StatusBadge } from "./StatusBadge";
-import { ACADEMIC_LEVEL_LABEL, COLLEGE_YEAR_LABEL, SUBJECT_LABEL } from "./status";
+import { StatusBadge } from "@/components/StatusBadge";
+import { ACADEMIC_LEVEL_LABEL, COLLEGE_YEAR_LABEL, SUBJECT_LABEL } from "@/lib/labels";
 
 export const metadata: Metadata = { title: "Cours" };
 

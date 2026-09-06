@@ -1,4 +1,4 @@
-import { ApiContentStatus } from "@/lib/api/types";
+import { ApiContentStatus, ApiDifficulty } from "@/lib/api/types";
 
 export const STATUS_LABEL: Record<ApiContentStatus, string> = {
   DRAFT: "Brouillon",
@@ -29,4 +29,10 @@ export const SUBJECT_LABEL: Record<string, string> = {
   MATH: "Maths",
   PHYSIQUE: "Physique-Chimie",
   SVT: "SVT",
+};
+
+export const DIFFICULTY_LABEL: Record<ApiDifficulty, string> = {
+  FACILE: "Facile",
+  MOYEN: "Moyen",
+  DIFFICILE: "Difficile",
 };
