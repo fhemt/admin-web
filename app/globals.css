@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fdfbf8;
+  --surface: #ffffff;
+  --surface-warm: #fbf7f3;
+  --surface-secondary: #f4ede6;
+  --foreground: #1a1a1a;
+  --foreground-secondary: #6b6259;
+  --foreground-tertiary: #a39c92;
+  --border: #ede4da;
+  --border-light: #f2ece4;
+
+  --primary: #fe4d01;
+  --primary-pressed: #d84101;
+  --primary-light: #ffd6c4;
+  --on-primary: #ffffff;
+
+  --secondary: #ffc831;
+  --secondary-light: #fff6de;
+  --on-secondary: #4a3300;
+
+  --success: #3dae6b;
+  --success-light: #e6f6ec;
+  --on-success: #ffffff;
+
+  --danger: #e4483d;
+  --danger-light: #fceae8;
+  --on-danger: #ffffff;
+
+  --lilac: #c9b6f5;
+  --lilac-light: #f4f0fd;
+  --on-lilac: #4a3b7a;
+
+  --gold: #b8860f;
+  --gold-light: #fbf0d7;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-warm: var(--surface-warm);
+  --color-surface-secondary: var(--surface-secondary);
+  --color-foreground: var(--foreground);
+  --color-foreground-secondary: var(--foreground-secondary);
+  --color-foreground-tertiary: var(--foreground-tertiary);
+  --color-border: var(--border);
+  --color-border-light: var(--border-light);
+
+  --color-primary: var(--primary);
+  --color-primary-pressed: var(--primary-pressed);
+  --color-primary-light: var(--primary-light);
+  --color-on-primary: var(--on-primary);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-light: var(--secondary-light);
+  --color-on-secondary: var(--on-secondary);
+
+  --color-success: var(--success);
+  --color-success-light: var(--success-light);
+  --color-on-success: var(--on-success);
+
+  --color-danger: var(--danger);
+  --color-danger-light: var(--danger-light);
+  --color-on-danger: var(--on-danger);
+
+  --color-lilac: var(--lilac);
+  --color-lilac-light: var(--lilac-light);
+  --color-on-lilac: var(--on-lilac);
+
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+
+  --font-display: var(--font-baloo);
+  --font-sans: var(--font-nunito);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+::selection {
+  background: var(--primary-light);
+  color: var(--on-primary);
+}
