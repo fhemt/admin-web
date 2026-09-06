@@ -25,7 +25,7 @@ export function proxy(request: NextRequest) {
   const token = request.cookies.get(ACCESS_TOKEN_COOKIE)?.value;
   const hasSession = Boolean(token);
   const { pathname } = request.nextUrl;
-  const isAuthRoute = pathname === "/login" || pathname === "/verify-otp";
+  const isAuthRoute = pathname === "/login" || pathname === "/verify-otp" || pathname === "/accept-invite";
 
   if (!hasSession && !isAuthRoute) {
     return NextResponse.redirect(new URL("/login", request.url));
