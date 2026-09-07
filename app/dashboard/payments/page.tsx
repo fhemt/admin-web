@@ -3,13 +3,10 @@ import { redirect } from "next/navigation";
 import { getMe } from "@/lib/api/profile";
 import { listPremiumRequests } from "@/lib/api/premium";
 import { SessionExpiredError } from "@/lib/api/errors";
+import { formatDate } from "@/lib/formatDate";
 import { ReviewActions } from "./ReviewActions";
 
 export const metadata: Metadata = { title: "Paiements" };
-
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("fr-FR", { day: "numeric", month: "short", year: "numeric" });
-}
 
 export default async function PaymentsPage() {
   let requests;

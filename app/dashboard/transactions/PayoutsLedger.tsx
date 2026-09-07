@@ -1,8 +1,5 @@
 import { ApiAffiliatePayoutWithCode } from "@/lib/api/types";
-
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("fr-FR", { day: "numeric", month: "short", year: "numeric" });
-}
+import { formatDate } from "@/lib/formatDate";
 
 export function PayoutsLedger({ payouts }: { payouts: ApiAffiliatePayoutWithCode[] }) {
   if (payouts.length === 0) {

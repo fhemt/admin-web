@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
 import { ApiPremiumRequest, ApiPremiumRequestStatus } from "@/lib/api/types";
+import { formatDate } from "@/lib/formatDate";
 
 const STATUS_LABEL: Record<ApiPremiumRequestStatus, string> = {
   PENDING: "En attente",
@@ -17,11 +18,6 @@ const STATUS_CLASSES: Record<ApiPremiumRequestStatus, string> = {
 };
 
 const STATUS_TABS: (ApiPremiumRequestStatus | "ALL")[] = ["ALL", "PENDING", "APPROVED", "REJECTED"];
-
-function formatDate(iso: string | null) {
-  if (!iso) return "—";
-  return new Date(iso).toLocaleDateString("fr-FR", { day: "numeric", month: "short", year: "numeric" });
-}
 
 export function PaymentsLedger({ requests }: { requests: ApiPremiumRequest[] }) {
   const [query, setQuery] = useState("");
