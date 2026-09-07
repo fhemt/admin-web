@@ -49,6 +49,22 @@ export interface ApiPremiumRequest {
   userFirstName: string;
   userLastName: string;
   userEmail: string;
+  userReferenceCode: string;
+}
+
+export interface ApiStudent {
+  userId: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  academicLevel: ApiAcademicLevel;
+  collegeYear: ApiCollegeYear | null;
+  city: string;
+  premium: boolean;
+  suspended: boolean;
+  referenceCode: string;
+  xp: number;
+  createdAt: string;
 }
 
 export interface ApiMaintenanceStatus {

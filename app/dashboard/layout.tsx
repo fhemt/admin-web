@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { BookOpen, ClipboardList, LogOut, Settings, User, Users, Wallet } from "lucide-react";
+import { BookOpen, ClipboardList, GraduationCap, LogOut, Settings, User, Users, Wallet } from "lucide-react";
 import { getMe } from "@/lib/api/profile";
 import { SessionExpiredError } from "@/lib/api/errors";
 import { logoutAction } from "../(auth)/actions";
@@ -19,6 +19,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
     { href: "/dashboard/mock-exams", label: "Examens blancs", icon: ClipboardList },
     { href: "/dashboard/team", label: "Équipe", icon: Users },
     { href: "/dashboard/payments", label: "Paiements", icon: Wallet },
+    ...(me.role === "ADMIN" ? [{ href: "/dashboard/students", label: "Élèves", icon: GraduationCap }] : []),
     { href: "/dashboard/profile", label: "Profil", icon: User },
     ...(me.role === "ADMIN" ? [{ href: "/dashboard/maintenance", label: "Maintenance", icon: Settings }] : []),
   ];
