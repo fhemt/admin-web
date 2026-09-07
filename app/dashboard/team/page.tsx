@@ -14,13 +14,13 @@ const ROLE_LABEL: Record<string, string> = { ADMIN: "Admin", SUPPORTER: "Support
 export default async function TeamPage() {
   let me, members, invites;
   try {
-    [me, members, invites] = await Promise.all([getMe(), listTeamMembers(), listPendingInvites()]);
+    me = await getMe();
+    if (me.role !== "ADMIN") redirect("/dashboard/courses");
+    [members, invites] = await Promise.all([listTeamMembers(), listPendingInvites()]);
   } catch (e) {
     if (e instanceof SessionExpiredError) redirect("/login");
     throw e;
   }
-
-  const isAdmin = me.role === "ADMIN";
 
   return (
     <div className="mx-auto max-w-3xl">
@@ -29,15 +29,13 @@ export default async function TeamPage() {
           <h1 className="font-display text-2xl font-bold text-foreground">Équipe</h1>
           <p className="text-sm text-foreground-secondary">{members.length} membre(s) · {invites.length} invitation(s) en attente.</p>
         </div>
-        {isAdmin && (
-          <Link
-            href="/dashboard/team/invite"
-            className="flex items-center gap-1.5 rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-on-primary transition hover:bg-primary-pressed"
-          >
-            <Plus size={16} strokeWidth={2} />
-            Inviter un membre
-          </Link>
-        )}
+        <Link
+          href="/dashboard/team/invite"
+          className="flex items-center gap-1.5 rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-on-primary transition hover:bg-primary-pressed"
+        >
+          <Plus size={16} strokeWidth={2} />
+          Inviter un membre
+        </Link>
       </div>
 
       <div className="mb-6 overflow-hidden rounded-2xl border border-border-light bg-surface">
@@ -77,11 +75,9 @@ export default async function TeamPage() {
                     <div className="text-xs text-foreground-tertiary">{invite.email}</div>
                   </td>
                   <td className="px-5 py-3 text-foreground-secondary">{ROLE_LABEL[invite.role]}</td>
-                  {isAdmin && (
-                    <td className="px-5 py-3 text-right">
-                      <RevokeInviteButton token={invite.token} />
-                    </td>
-                  )}
+                  <td className="px-5 py-3 text-right">
+                    <RevokeInviteButton token={invite.token} />
+                  </td>
                 </tr>
               ))}
             </tbody>

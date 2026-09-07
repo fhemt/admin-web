@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import * as systemApi from "@/lib/api/system";
+import { requireAdmin } from "@/lib/api/profile";
 import { SessionExpiredError } from "@/lib/api/errors";
 
 export type ActionState = { error?: string } | undefined;
@@ -12,6 +13,7 @@ export type ActionState = { error?: string } | undefined;
 // just re-fetch the whole page server-side and repaint it, which is exactly
 // the "feels like a refresh" flash this was built to avoid.
 export async function updateMaintenanceAction(_prevState: ActionState, formData: FormData): Promise<ActionState> {
+  await requireAdmin();
   const active = formData.get("active") === "on";
   const message = String(formData.get("message") ?? "").trim();
 
