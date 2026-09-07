@@ -1,6 +1,6 @@
 import "server-only";
 import { apiGet, apiPatch, apiPost } from "@/lib/api/client";
-import { ApiAffiliateCode, ApiAffiliatePayout } from "@/lib/api/types";
+import { ApiAffiliateCode, ApiAffiliatePayout, ApiAffiliatePayoutWithCode } from "@/lib/api/types";
 
 export function listAffiliateCodes() {
   return apiGet<ApiAffiliateCode[]>("/api/v1/admin/affiliate-codes");
@@ -26,4 +26,8 @@ export function recordAffiliatePayout(codeId: string, amount: number, note?: str
 
 export function listAffiliatePayouts(codeId: string) {
   return apiGet<ApiAffiliatePayout[]>(`/api/v1/admin/affiliate-codes/${codeId}/payouts`);
+}
+
+export function listAllAffiliatePayouts() {
+  return apiGet<ApiAffiliatePayoutWithCode[]>("/api/v1/admin/affiliate-codes/payouts");
 }

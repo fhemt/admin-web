@@ -75,6 +75,15 @@ export interface ApiAffiliatePayout {
   note: string | null;
 }
 
+export interface ApiAffiliatePayoutWithCode {
+  id: string;
+  code: string | null;
+  ownerName: string | null;
+  amount: number;
+  paidAt: string;
+  note: string | null;
+}
+
 export interface ApiCountByLabel {
   label: string;
   count: number;
