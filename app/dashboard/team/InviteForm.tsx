@@ -22,8 +22,8 @@ export function InviteForm() {
         <input type="email" name="email" required className={inputClass} />
       </Field>
       <Field label="Rôle">
-        <select name="role" defaultValue="TEACHER" className={inputClass}>
-          <option value="TEACHER">Enseignant</option>
+        <select name="role" defaultValue="SUPPORTER" className={inputClass}>
+          <option value="SUPPORTER">Support</option>
           <option value="ADMIN">Admin</option>
         </select>
       </Field>

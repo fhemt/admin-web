@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { BookOpen, ClipboardList, LogOut, Settings, User, Users, Wallet } from "lucide-react";
+import { BarChart3, BookOpen, ClipboardList, GraduationCap, Handshake, LogOut, Settings, User, Users, Wallet } from "lucide-react";
 import { getMe } from "@/lib/api/profile";
 import { SessionExpiredError } from "@/lib/api/errors";
 import { logoutAction } from "../(auth)/actions";
@@ -15,10 +15,13 @@ export default async function DashboardLayout({ children }: { children: React.Re
   }
 
   const nav = [
+    { href: "/dashboard/analytics", label: "Analytics", icon: BarChart3 },
     { href: "/dashboard/courses", label: "Cours", icon: BookOpen },
     { href: "/dashboard/mock-exams", label: "Examens blancs", icon: ClipboardList },
     { href: "/dashboard/team", label: "Équipe", icon: Users },
     { href: "/dashboard/payments", label: "Paiements", icon: Wallet },
+    ...(me.role === "ADMIN" ? [{ href: "/dashboard/affiliates", label: "Affiliés", icon: Handshake }] : []),
+    ...(me.role === "ADMIN" ? [{ href: "/dashboard/students", label: "Élèves", icon: GraduationCap }] : []),
     { href: "/dashboard/profile", label: "Profil", icon: User },
     ...(me.role === "ADMIN" ? [{ href: "/dashboard/maintenance", label: "Maintenance", icon: Settings }] : []),
   ];
@@ -40,7 +43,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
           ))}
         </nav>
         <div className="mb-2 px-3 text-xs text-foreground-tertiary">
-          {me.firstName} {me.lastName} · {me.role === "ADMIN" ? "Admin" : "Enseignant"}
+          {me.firstName} {me.lastName} · {me.role === "ADMIN" ? "Admin" : "Support"}
         </div>
         <form action={logoutAction}>
           <button

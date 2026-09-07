@@ -6,7 +6,7 @@ import { ChangePasswordForm } from "./ChangePasswordForm";
 
 export const metadata: Metadata = { title: "Profil" };
 
-const ROLE_LABEL: Record<string, string> = { ADMIN: "Admin", TEACHER: "Enseignant", STUDENT: "Élève" };
+const ROLE_LABEL: Record<string, string> = { ADMIN: "Admin", SUPPORTER: "Support", STUDENT: "Élève" };
 
 export default async function ProfilePage() {
   let me;

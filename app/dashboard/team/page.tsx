@@ -9,7 +9,7 @@ import { RevokeInviteButton } from "./RevokeInviteButton";
 
 export const metadata: Metadata = { title: "Équipe" };
 
-const ROLE_LABEL: Record<string, string> = { ADMIN: "Admin", TEACHER: "Enseignant", STUDENT: "Élève" };
+const ROLE_LABEL: Record<string, string> = { ADMIN: "Admin", SUPPORTER: "Support", STUDENT: "Élève" };
 
 export default async function TeamPage() {
   let me, members, invites;
