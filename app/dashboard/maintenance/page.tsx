@@ -5,9 +5,9 @@ import { getMaintenanceStatus } from "@/lib/api/system";
 import { SessionExpiredError } from "@/lib/api/errors";
 import { MaintenanceToggle } from "./MaintenanceToggle";
 
-export const metadata: Metadata = { title: "Paramètres" };
+export const metadata: Metadata = { title: "Maintenance" };
 
-export default async function SettingsPage() {
+export default async function MaintenancePage() {
   let me, status;
   try {
     me = await getMe();
@@ -21,14 +21,13 @@ export default async function SettingsPage() {
   return (
     <div className="mx-auto max-w-lg">
       <div className="mb-6">
-        <h1 className="font-display text-2xl font-bold text-foreground">Paramètres</h1>
+        <h1 className="font-display text-2xl font-bold text-foreground">Maintenance</h1>
+        <p className="mt-1 text-sm text-foreground-secondary">
+          Verrouille l’app mobile sur un écran de maintenance pour tous les élèves, immédiatement.
+        </p>
       </div>
 
       <div className="rounded-2xl border border-border-light bg-surface p-5">
-        <h2 className="mb-1 font-display text-base font-bold text-foreground">Mode maintenance</h2>
-        <p className="mb-4 text-sm text-foreground-secondary">
-          Verrouille l’app mobile sur un écran de maintenance pour tous les élèves, immédiatement.
-        </p>
         <MaintenanceToggle status={status} />
       </div>
     </div>

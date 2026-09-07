@@ -1,7 +1,7 @@
 "use client";
 
-import { useActionState, useState } from "react";
-import { Loader2 } from "lucide-react";
+import { useActionState, useEffect, useState } from "react";
+import { Check, Loader2 } from "lucide-react";
 import { ApiMaintenanceStatus } from "@/lib/api/types";
 import { Field, inputClass } from "@/components/form/Field";
 import { updateMaintenanceAction } from "./actions";
@@ -9,6 +9,26 @@ import { updateMaintenanceAction } from "./actions";
 export function MaintenanceToggle({ status }: { status: ApiMaintenanceStatus }) {
   const [state, formAction, pending] = useActionState(updateMaintenanceAction, undefined);
   const [active, setActive] = useState(status.active);
+  const [justSaved, setJustSaved] = useState(false);
+
+  // Adjust state during render (not in an effect) when the action's result
+  // changes — the React-recommended pattern for deriving state from a prop/
+  // value that changed since the last render: https://react.dev/learn/you-might-not-need-an-effect#adjusting-some-state-when-a-prop-changes
+  const [seenState, setSeenState] = useState(state);
+  if (state !== seenState) {
+    setSeenState(state);
+    setJustSaved(state !== undefined && !state.error);
+  }
+
+  // No page re-render backs this action (see actions.ts), so this banner is
+  // the only signal the save actually went through — auto-hides after a
+  // couple of seconds. The setState here is inside the timeout callback,
+  // not synchronously in the effect body, so it doesn't cascade renders.
+  useEffect(() => {
+    if (!justSaved) return;
+    const timeout = setTimeout(() => setJustSaved(false), 2000);
+    return () => clearTimeout(timeout);
+  }, [justSaved]);
 
   return (
     <form action={formAction} className="flex flex-col gap-4">
@@ -31,7 +51,7 @@ export function MaintenanceToggle({ status }: { status: ApiMaintenanceStatus }) 
 
       {state?.error && <p className="text-sm text-danger">{state.error}</p>}
 
-      <div>
+      <div className="flex items-center gap-3">
         <button
           type="submit"
           disabled={pending}
@@ -40,6 +60,12 @@ export function MaintenanceToggle({ status }: { status: ApiMaintenanceStatus }) 
           {pending && <Loader2 size={16} className="animate-spin" />}
           Enregistrer
         </button>
+        {justSaved && (
+          <span className="flex items-center gap-1.5 text-sm font-medium text-success">
+            <Check size={16} strokeWidth={2.5} />
+            Enregistré
+          </span>
+        )}
       </div>
     </form>
   );
