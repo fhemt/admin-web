@@ -45,11 +45,110 @@ export interface ApiPremiumRequest {
   proofFileName: string;
   pricePaid: number;
   promoCode: string | null;
+  affiliateOwnerName: string | null;
   userId: string;
   userFirstName: string;
   userLastName: string;
   userEmail: string;
   userReferenceCode: string;
+}
+
+export interface ApiAffiliateCode {
+  id: string;
+  code: string;
+  ownerName: string;
+  ownerContact: string | null;
+  discountedPrice: number;
+  commissionAmount: number;
+  active: boolean;
+  redemptionCount: number;
+  totalEarned: number;
+  totalPaid: number;
+  totalOwed: number;
+  createdAt: string;
+}
+
+export interface ApiAffiliatePayout {
+  id: string;
+  amount: number;
+  paidAt: string;
+  note: string | null;
+}
+
+export interface ApiCountByLabel {
+  label: string;
+  count: number;
+}
+
+export interface ApiDailyRevenuePoint {
+  date: string;
+  amount: number;
+  count: number;
+}
+
+export interface ApiDailySignupPoint {
+  date: string;
+  count: number;
+}
+
+export interface ApiTopCourse {
+  courseTitle: string;
+  enrollments: number;
+  completions: number;
+  completionRate: number;
+}
+
+export interface ApiTopAffiliate {
+  code: string;
+  ownerName: string;
+  redemptions: number;
+  earned: number;
+}
+
+export interface ApiRevenueAnalytics {
+  totalApprovedRevenue: number;
+  pendingCount: number;
+  approvedCount: number;
+  rejectedCount: number;
+  averagePricePaid: number;
+  promoRedemptionsCount: number;
+  fullPriceCount: number;
+  last30Days: ApiDailyRevenuePoint[];
+}
+
+export interface ApiUserGrowthAnalytics {
+  totalStudents: number;
+  totalPremium: number;
+  totalSuspended: number;
+  signupsLast30Days: ApiDailySignupPoint[];
+  byAcademicLevel: ApiCountByLabel[];
+  byCity: ApiCountByLabel[];
+  funnelSignedUp: number;
+  funnelSubmittedPremiumRequest: number;
+  funnelApprovedPremium: number;
+}
+
+export interface ApiEngagementAnalytics {
+  totalEnrollments: number;
+  completedEnrollments: number;
+  completionRate: number;
+  quizPassRate: number;
+  topCourses: ApiTopCourse[];
+}
+
+export interface ApiAffiliateAnalytics {
+  totalActiveCodes: number;
+  totalEarnedAllTime: number;
+  totalPaidAllTime: number;
+  totalOwedAllTime: number;
+  topAffiliates: ApiTopAffiliate[];
+}
+
+export interface ApiAnalyticsOverview {
+  revenue: ApiRevenueAnalytics;
+  userGrowth: ApiUserGrowthAnalytics;
+  engagement: ApiEngagementAnalytics;
+  affiliates: ApiAffiliateAnalytics;
 }
 
 export interface ApiStudent {

@@ -74,6 +74,7 @@ export default async function PaymentsPage() {
               {request.promoCode && (
                 <div className="border-t border-border-light bg-surface-warm px-5 py-2 text-xs text-foreground-secondary">
                   Code promo : <span className="font-medium text-foreground">{request.promoCode}</span>
+                  {request.affiliateOwnerName ? ` — ${request.affiliateOwnerName}` : ""}
                 </div>
               )}
 
