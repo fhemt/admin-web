@@ -40,7 +40,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
           ))}
         </nav>
         <div className="mb-2 px-3 text-xs text-foreground-tertiary">
-          {me.firstName} {me.lastName} · {me.role === "ADMIN" ? "Admin" : "Enseignant"}
+          {me.firstName} {me.lastName} · {me.role === "ADMIN" ? "Admin" : "Support"}
         </div>
         <form action={logoutAction}>
           <button

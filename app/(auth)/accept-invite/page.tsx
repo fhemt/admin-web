@@ -7,7 +7,7 @@ import { AcceptInviteForm } from "../AcceptInviteForm";
 
 export const metadata: Metadata = { title: "Activer mon compte" };
 
-const ROLE_LABEL: Record<string, string> = { ADMIN: "Admin", TEACHER: "Enseignant", STUDENT: "Élève" };
+const ROLE_LABEL: Record<string, string> = { ADMIN: "Admin", SUPPORTER: "Support", STUDENT: "Élève" };
 
 export default async function AcceptInvitePage({ searchParams }: PageProps<"/accept-invite">) {
   const { token } = await searchParams;
