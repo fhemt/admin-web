@@ -34,6 +34,23 @@ export interface ApiTeamInvite {
   role: ApiRole;
 }
 
+export type ApiPremiumRequestStatus = "PENDING" | "APPROVED" | "REJECTED";
+
+export interface ApiPremiumRequest {
+  id: string;
+  status: ApiPremiumRequestStatus;
+  submittedAt: string;
+  reviewedAt: string | null;
+  rejectionReason: string | null;
+  proofFileName: string;
+  pricePaid: number;
+  promoCode: string | null;
+  userId: string;
+  userFirstName: string;
+  userLastName: string;
+  userEmail: string;
+}
+
 export interface ApiMaintenanceStatus {
   active: boolean;
   message: string | null;
