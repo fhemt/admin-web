@@ -4,11 +4,13 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import * as teamApi from "@/lib/api/team";
 import { ApiRole } from "@/lib/api/types";
+import { requireAdmin } from "@/lib/api/profile";
 import { SessionExpiredError } from "@/lib/api/errors";
 
 export type ActionState = { error?: string } | undefined;
 
 export async function inviteMemberAction(_prevState: ActionState, formData: FormData): Promise<ActionState> {
+  await requireAdmin();
   try {
     await teamApi.inviteTeamMember({
       email: String(formData.get("email") ?? "").trim().toLowerCase(),
@@ -25,6 +27,7 @@ export async function inviteMemberAction(_prevState: ActionState, formData: Form
 }
 
 export async function revokeInviteAction(token: string) {
+  await requireAdmin();
   try {
     await teamApi.revokeInvite(token);
   } catch (e) {

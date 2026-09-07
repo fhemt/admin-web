@@ -3,11 +3,13 @@
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import * as affiliatesApi from "@/lib/api/affiliates";
+import { requireAdmin } from "@/lib/api/profile";
 import { ApiError, SessionExpiredError } from "@/lib/api/errors";
 
 export type ActionState = { error?: string } | undefined;
 
 export async function createAffiliateCodeAction(_prevState: ActionState, formData: FormData): Promise<ActionState> {
+  await requireAdmin();
   try {
     await affiliatesApi.createAffiliateCode({
       code: String(formData.get("code") ?? "").trim(),
@@ -25,6 +27,7 @@ export async function createAffiliateCodeAction(_prevState: ActionState, formDat
 }
 
 export async function setAffiliateCodeActiveAction(codeId: string, active: boolean) {
+  await requireAdmin();
   try {
     await affiliatesApi.setAffiliateCodeActive(codeId, active);
   } catch (e) {
@@ -36,6 +39,7 @@ export async function setAffiliateCodeActiveAction(codeId: string, active: boole
 }
 
 export async function recordPayoutAction(codeId: string, _prevState: ActionState, formData: FormData): Promise<ActionState> {
+  await requireAdmin();
   const amount = Number(formData.get("amount"));
   try {
     await affiliatesApi.recordAffiliatePayout(codeId, amount, String(formData.get("note") ?? "").trim() || undefined);
