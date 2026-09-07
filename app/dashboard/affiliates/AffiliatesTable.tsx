@@ -4,11 +4,8 @@ import Link from "next/link";
 import { useTransition } from "react";
 import { Loader2 } from "lucide-react";
 import { ApiAffiliateCode } from "@/lib/api/types";
+import { formatDate } from "@/lib/formatDate";
 import { setAffiliateCodeActiveAction } from "./actions";
-
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("fr-FR", { day: "numeric", month: "short", year: "numeric" });
-}
 
 function ActiveToggle({ code }: { code: ApiAffiliateCode }) {
   const [pending, startTransition] = useTransition();

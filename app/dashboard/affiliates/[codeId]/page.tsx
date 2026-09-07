@@ -3,13 +3,10 @@ import { notFound, redirect } from "next/navigation";
 import { getMe } from "@/lib/api/profile";
 import { listAffiliateCodes, listAffiliatePayouts } from "@/lib/api/affiliates";
 import { SessionExpiredError } from "@/lib/api/errors";
+import { formatDate } from "@/lib/formatDate";
 import { RecordPayoutForm } from "./RecordPayoutForm";
 
 export const metadata: Metadata = { title: "Détails affilié" };
-
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("fr-FR", { day: "numeric", month: "short", year: "numeric" });
-}
 
 export default async function AffiliateCodeDetailPage({ params }: { params: Promise<{ codeId: string }> }) {
   const { codeId } = await params;

@@ -3,13 +3,10 @@
 import { useMemo, useState, useTransition } from "react";
 import { Ban, Loader2, Search, ShieldCheck, Sparkle, StarOff } from "lucide-react";
 import { ApiStudent } from "@/lib/api/types";
+import { formatDate } from "@/lib/formatDate";
 import { setPremiumAction, setSuspendedAction } from "./actions";
 
 const LEVEL_LABEL: Record<string, string> = { COLLEGE: "Collège", LYCEE: "Lycée" };
-
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("fr-FR", { day: "numeric", month: "short", year: "numeric" });
-}
 
 function StudentRow({ student }: { student: ApiStudent }) {
   const [pending, startTransition] = useTransition();
