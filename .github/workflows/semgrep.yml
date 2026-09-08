@@ -1,0 +1,27 @@
+name: Semgrep
+
+# Free on any repo regardless of visibility — unlike CodeQL, which needs
+# GitHub Advanced Security, unavailable on private repos on the org's
+# current (free) GitHub plan. Runs unauthenticated (no SEMGREP_APP_TOKEN):
+# `semgrep ci` still works in that mode, using Semgrep's public default
+# ruleset instead of an org-configured policy — no account needed.
+on:
+  push:
+    branches: [dev, prod]
+  pull_request:
+    branches: [dev, prod]
+  schedule:
+    - cron: "0 4 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  semgrep:
+    name: SAST
+    runs-on: ubuntu-latest
+    container:
+      image: semgrep/semgrep
+    steps:
+      - uses: actions/checkout@v4
+      - run: semgrep ci --config auto
