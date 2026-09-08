@@ -11,6 +11,7 @@ on:
 permissions:
   contents: read
   security-events: write
+  actions: read # codeql-action/analyze needs this to look up workflow-run context when uploading SARIF
 
 jobs:
   analyze:
