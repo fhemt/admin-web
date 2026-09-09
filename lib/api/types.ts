@@ -326,10 +326,9 @@ export interface ApiLesson {
   xpReward: number;
   content: ApiContentBlock[];
   quiz: ApiQuiz;
-  status: ApiContentStatus;
 }
 
-export type LessonUpsertInput = Omit<ApiLesson, "id" | "courseId" | "status">;
+export type LessonUpsertInput = Omit<ApiLesson, "id" | "courseId">;
 
 export interface ApiCorrection {
   solution: ApiLocalized;
@@ -349,10 +348,9 @@ export interface ApiExercise {
   statement: ApiLocalized;
   hints: ApiLocalized[];
   correction: ApiCorrection;
-  status: ApiContentStatus;
 }
 
-export type ExerciseUpsertInput = Omit<ApiExercise, "id" | "courseId" | "locked" | "status">;
+export type ExerciseUpsertInput = Omit<ApiExercise, "id" | "courseId" | "locked">;
 
 export interface ApiMockExamPart {
   id: string;

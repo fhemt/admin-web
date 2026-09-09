@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import { getLesson } from "@/lib/api/lessons";
 import { ApiError, SessionExpiredError } from "@/lib/api/errors";
-import { PublishControls } from "@/components/PublishControls";
+import { DeleteButton } from "@/components/DeleteButton";
 import { LessonForm } from "../../LessonForm";
-import { deleteLessonAction, setLessonStatusAction, updateLessonAction } from "../../actions";
+import { deleteLessonAction, updateLessonAction } from "../../actions";
 
 export const metadata: Metadata = { title: "Modifier la leçon" };
 
@@ -30,11 +30,9 @@ export default async function EditLessonPage({ params }: PageProps<"/dashboard/c
       </div>
 
       <div className="mb-6 rounded-2xl border border-border-light bg-surface p-4">
-        <PublishControls
-          status={lesson.status}
-          onStatusChange={setLessonStatusAction.bind(null, courseId, lessonId)}
+        <DeleteButton
           onDelete={deleteLessonAction.bind(null, courseId, lessonId)}
-          deleteConfirmMessage="Supprimer définitivement cette leçon ?"
+          confirmMessage="Supprimer définitivement cette leçon ?"
         />
       </div>
 

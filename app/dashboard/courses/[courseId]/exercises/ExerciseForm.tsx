@@ -51,7 +51,7 @@ export function ExerciseForm({ exercise, action, submitLabel }: Props) {
         </Field>
         <Field label="Accès">
           <label className="flex items-center gap-2 rounded-xl border border-border bg-surface px-3.5 py-2.5 text-[14px]">
-            <input type="checkbox" name="premium" defaultChecked={exercise?.premium ?? false} className="size-4 accent-[var(--primary)]" />
+            <input type="checkbox" name="premium" defaultChecked={exercise?.premium ?? true} className="size-4 accent-[var(--primary)]" />
             Réservé aux comptes premium
           </label>
         </Field>

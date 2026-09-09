@@ -1,6 +1,6 @@
 import "server-only";
-import { apiDelete, apiGet, apiPatch, apiPost, apiPut } from "@/lib/api/client";
-import { ApiContentStatus, ApiLesson, LessonUpsertInput } from "@/lib/api/types";
+import { apiDelete, apiGet, apiPost, apiPut } from "@/lib/api/client";
+import { ApiLesson, LessonUpsertInput } from "@/lib/api/types";
 
 export function listLessons(courseId: string) {
   return apiGet<ApiLesson[]>(`/api/v1/admin/courses/${courseId}/lessons`);
@@ -16,10 +16,6 @@ export function createLesson(courseId: string, input: LessonUpsertInput) {
 
 export function updateLesson(courseId: string, lessonId: string, input: LessonUpsertInput) {
   return apiPut<ApiLesson>(`/api/v1/admin/courses/${courseId}/lessons/${lessonId}`, input);
-}
-
-export function setLessonStatus(courseId: string, lessonId: string, status: ApiContentStatus) {
-  return apiPatch<ApiLesson>(`/api/v1/admin/courses/${courseId}/lessons/${lessonId}/status`, { status });
 }
 
 export function deleteLesson(courseId: string, lessonId: string) {

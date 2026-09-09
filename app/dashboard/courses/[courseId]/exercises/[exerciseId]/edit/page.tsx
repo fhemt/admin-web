@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import { getExercise } from "@/lib/api/exercises";
 import { ApiError, SessionExpiredError } from "@/lib/api/errors";
-import { PublishControls } from "@/components/PublishControls";
+import { DeleteButton } from "@/components/DeleteButton";
 import { ExerciseForm } from "../../ExerciseForm";
-import { deleteExerciseAction, setExerciseStatusAction, updateExerciseAction } from "../../actions";
+import { deleteExerciseAction, updateExerciseAction } from "../../actions";
 
 export const metadata: Metadata = { title: "Modifier l'exercice" };
 
@@ -29,11 +29,9 @@ export default async function EditExercisePage({ params }: PageProps<"/dashboard
       </div>
 
       <div className="mb-6 rounded-2xl border border-border-light bg-surface p-4">
-        <PublishControls
-          status={exercise.status}
-          onStatusChange={setExerciseStatusAction.bind(null, courseId, exerciseId)}
+        <DeleteButton
           onDelete={deleteExerciseAction.bind(null, courseId, exerciseId)}
-          deleteConfirmMessage="Supprimer définitivement cet exercice ?"
+          confirmMessage="Supprimer définitivement cet exercice ?"
         />
       </div>
 
