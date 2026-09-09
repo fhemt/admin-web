@@ -36,3 +36,12 @@ export const DIFFICULTY_LABEL: Record<ApiDifficulty, string> = {
   MOYEN: "Moyen",
   DIFFICILE: "Difficile",
 };
+
+export const COURSE_ICON_LABEL: Record<string, string> = {
+  CALCULATOR: "Calculatrice",
+  SIGMA: "Sigma",
+  RULER: "Règle",
+  SHAPES: "Formes",
+  FLASK: "Flacon",
+  BOOK: "Livre",
+};

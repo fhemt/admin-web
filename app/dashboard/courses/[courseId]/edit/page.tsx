@@ -6,7 +6,6 @@ import { getCourse } from "@/lib/api/courses";
 import { listLessons } from "@/lib/api/lessons";
 import { listExercises } from "@/lib/api/exercises";
 import { ApiError, SessionExpiredError } from "@/lib/api/errors";
-import { StatusBadge } from "@/components/StatusBadge";
 import { CourseForm } from "../../CourseForm";
 import { StatusControls } from "../../StatusControls";
 import { updateCourseAction } from "../../actions";
@@ -38,6 +37,9 @@ export default async function EditCoursePage({ params }: PageProps<"/dashboard/c
 
       <div className="mb-6 rounded-2xl border border-border-light bg-surface p-4">
         <StatusControls courseId={course.id} status={course.status} />
+        <p className="mt-2 text-xs text-foreground-tertiary">
+          Publier le cours rend immédiatement toutes ses leçons et tous ses exercices visibles aux élèves.
+        </p>
       </div>
 
       <div className="mb-6 rounded-2xl border border-border-light bg-surface p-4">
@@ -61,7 +63,6 @@ export default async function EditCoursePage({ params }: PageProps<"/dashboard/c
               <span className="text-foreground">
                 {lesson.position}. {lesson.title.fr}
               </span>
-              <StatusBadge status={lesson.status} />
             </Link>
           ))}
           {lessons.length === 0 && <p className="px-2.5 py-2 text-sm text-foreground-tertiary">Aucune leçon pour l’instant.</p>}
@@ -89,7 +90,6 @@ export default async function EditCoursePage({ params }: PageProps<"/dashboard/c
               <span className="text-foreground">
                 {exercise.position}. {exercise.title.fr}
               </span>
-              <StatusBadge status={exercise.status} />
             </Link>
           ))}
           {exercises.length === 0 && <p className="px-2.5 py-2 text-sm text-foreground-tertiary">Aucun exercice pour l’instant.</p>}

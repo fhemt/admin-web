@@ -49,7 +49,7 @@ export default async function CoursesPage() {
             {courses.map((course) => (
               <tr key={course.id} className="border-b border-border-light last:border-0 hover:bg-surface-warm">
                 <td className="px-5 py-3">
-                  <Link href={`/dashboard/courses/${course.id}/edit`} className="font-medium text-foreground hover:text-primary">
+                  <Link href={`/dashboard/courses/${course.id}`} className="font-medium text-foreground hover:text-primary">
                     {course.title.fr}
                   </Link>
                 </td>

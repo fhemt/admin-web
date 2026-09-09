@@ -3,7 +3,7 @@
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import * as lessonsApi from "@/lib/api/lessons";
-import { ApiContentBlock, ApiContentStatus, ApiLocalized, ApiQuiz, LessonUpsertInput } from "@/lib/api/types";
+import { ApiContentBlock, ApiLocalized, ApiQuiz, LessonUpsertInput } from "@/lib/api/types";
 import { SessionExpiredError } from "@/lib/api/errors";
 
 export type ActionState = { error?: string } | undefined;
@@ -48,17 +48,6 @@ export async function updateLessonAction(
   revalidatePath(`/dashboard/courses/${courseId}/edit`);
   revalidatePath(`/dashboard/courses/${courseId}/lessons/${lessonId}/edit`);
   return { error: undefined };
-}
-
-export async function setLessonStatusAction(courseId: string, lessonId: string, status: ApiContentStatus) {
-  try {
-    await lessonsApi.setLessonStatus(courseId, lessonId, status);
-  } catch (e) {
-    if (e instanceof SessionExpiredError) redirect("/login");
-    throw e;
-  }
-  revalidatePath(`/dashboard/courses/${courseId}/edit`);
-  revalidatePath(`/dashboard/courses/${courseId}/lessons/${lessonId}/edit`);
 }
 
 export async function deleteLessonAction(courseId: string, lessonId: string) {
